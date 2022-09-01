@@ -87,7 +87,9 @@ func down(client *govultr.Client) {
 	errs := make(chan error, 1)
 	done := make(chan bool, 1)
 
-	for _, ip := range resIPList(context.Background(), client) {
+	ips, _ := resIPList(context.Background(), client)
+
+	for _, ip := range ips {
 
 		wg.Add(1)
 
@@ -134,12 +136,12 @@ func resIPDelete(ctx context.Context, client *govultr.Client, id string) error {
 	return nil
 }
 
-func resIPList(ctx context.Context, client *govultr.Client) []govultr.ReservedIP {
+func resIPList(ctx context.Context, client *govultr.Client) ([]govultr.ReservedIP, error) {
 	ips, _, err := client.ReservedIP.List(ctx, nil)
 
 	if err != nil {
-		panic(err.Error())
+		return nil, err
 	}
 
-	return ips
+	return ips, nil
 }
