@@ -14,5 +14,5 @@ require (
 	github.com/hashicorp/go-retryablehttp v0.7.1 // indirect
 	golang.org/x/net v0.7.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/protobuf v1.28.0 // indirect
+	google.golang.org/protobuf v1.33.0 // indirect
 )
